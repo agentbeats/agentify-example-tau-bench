@@ -1,0 +1,35 @@
+name = "tau_green_agent"
+description = "The assessment hosting agent for tau-bench."
+version = "0.1.0"
+
+defaultInputModes = ["text"]
+defaultOutputModes = ["text"]
+[capabilities]
+streaming = false
+
+[[skills]]
+id = "host_assess_tau_bench"
+name = "Tau-bench assessment hosting"
+description = """
+Assess the tool-calling ability of an agent.
+"""
+tags = ["green agent", "assessment hosting", "tau-bench"]
+examples = ["""    
+Your task is to instantiate tau-bench to test the agent located at:
+<white_agent_url>
+http://localhost:9002/
+</white_agent_url>
+You should use the following env configuration:
+<env_config>
+{
+  "env": "retail",
+  "user_strategy": "llm",
+  "user_model": "openai/gpt-4o",
+  "user_provider": "openai",
+  "task_split": "test",
+  "task_ids": [
+    1
+  ]
+}
+</env_config>
+    """]

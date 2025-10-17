@@ -11,20 +11,17 @@ src/
 └── launcher.py     # Evaluation coordinator
 ```
 
-## Usage
-
-```bash
-# Start green agent (assessment manager)
-uv run python main.py green
-
-# Start white agent (target being tested)
-uv run python main.py white
-
-# Launch complete evaluation
-uv run python main.py launch
-```
-
 ## Installation
 
 ```bash
 uv sync
+```
+
+## Usage
+
+First, configure `.env` with `OPENAI_API_KEY=...`, then
+
+```bash
+# Launch complete evaluation
+uv run python main.py launch
+```

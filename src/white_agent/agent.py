@@ -53,20 +53,12 @@ class GeneralWhiteAgentExecutor(AgentExecutor):
                 "content": user_input,
             }
         )
-        if os.environ.get("LITELLM_PROXY_API_KEY") is not None:
-            response = completion(
-                messages=messages,
-                model="openrouter/openai/gpt-4o",
-                custom_llm_provider="litellm_proxy",
-                temperature=0.0,
-            )
-        else:
-            response = completion(
-                messages=messages,
-                model="openai/gpt-4o",
-                custom_llm_provider="openai",
-                temperature=0.0,
-            )
+        response = completion(
+            messages=messages,
+            model="openai/gpt-4o",
+            custom_llm_provider="openai",
+            temperature=0.0,
+        )
         next_message = response.choices[0].message.model_dump()  # type: ignore
         messages.append(
             {
@@ -104,3 +96,8 @@ def start_white_agent(agent_name="general_white_agent", host="localhost", port=9
     )
 
     uvicorn.run(app.build(), host=host, port=port)
+
+
+if __name__ == "__main__":
+    port = int(os.getenv("AGENT_PORT", "9002"))
+    start_white_agent(port=port)

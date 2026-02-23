@@ -1,5 +1,5 @@
 [project]
-name = "agentify-example-tau-bench"
+name = "agentify-example-tau-bench-proxy"
 version = "0.1.0"
 description = "Example code of agentifying tau-bench for the blog `Agentify the Agent Assessment`."
 readme = "README.md"
@@ -7,12 +7,14 @@ requires-python = ">=3.13"
 dependencies = [
     "a2a-sdk[http-server]>=0.3.8",
     "dotenv>=0.9.9",
-    "earthshaker>=0.1.12",
+    "earthshaker>=0.2.0",
     "pydantic-settings>=2.11.0",
+    "requests>=2.31.0",
     "tau-bench",
     "typer>=0.19.2",
     "uvicorn>=0.37.0",
 ]
 
 [tool.uv.sources]
+earthshaker = { path = "../earthshaker", editable = true }
 tau-bench = { git = "https://github.com/sierra-research/tau-bench.git" }
